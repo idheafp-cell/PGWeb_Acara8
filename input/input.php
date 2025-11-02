@@ -1,4 +1,5 @@
 <?php 
+// Mengambil data dari form
 $kecamatan = $_POST['kecamatan']; 
 $longitude = $_POST['longitude']; 
 $latitude = $_POST['latitude'];
@@ -20,18 +21,16 @@ if ($conn->connect_error) {
 } 
 
 $sql = "INSERT INTO data_kecamatan (kecamatan, longitude, latitude, luas, jumlah_penduduk) 
-VALUES ('$kecamatan', $longitude, $latitude, $luas, $jumlah_penduduk)"; 
+VALUES ('$kecamatan', '$longitude', '$latitude', '$luas', '$jumlah_penduduk')"; 
 
 // Menyimpan data dan memeriksa apakah berhasil
 if ($conn->query($sql) === TRUE) { 
-    $massage = "Rekord berhasil ditambahkan"; 
+    echo "Rekord berhasil ditambahkan"; 
 } else { 
-    $massage = "Error: " . $sql . "<br>" . $conn->error; 
+    echo "Error: " . $sql . "<br>" . $conn->error; 
 } 
 
 // Menutup koneksi
 $conn->close(); 
 
-
-header("Location: ../index.php"); 
 ?> 

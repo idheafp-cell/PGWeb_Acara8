@@ -20,11 +20,14 @@
     if ($conn->connect_error) {
         die("Koneksi gagal: " . $conn->connect_error);
     }
+
+    //Mengambil data dari tabel data_kecamatan
     $sql = "SELECT * FROM data_kecamatan";
     $result = $conn->query($sql);
 
     echo "<a href='input/index.html'>Input</a>";
 
+    //Menambahkan tabel
     if ($result->num_rows > 0) { 
         echo "<table border='1px'>
                 <tr> 
