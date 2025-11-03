@@ -37,6 +37,7 @@
                     <th>Latitude</th>
                     <th>Luas</th> 
                     <th>Jumlah Penduduk</th>
+                    <th colspan='2'>Aksi</th>
                 </tr>";
 
         // output data of each row 
@@ -48,7 +49,9 @@
                     <td>".$row["latitude"]."</td>
                     <td>".$row["luas"]."</td>
                     <td>".$row["jumlah_penduduk"]."</td>
-                </tr>";    
+                    <td><a href=delete.php?id=".$row['id'].">Hapus</a></td>
+                    <td><a href=edit/index.php?id=".$row['id'].">Edit</a></td>
+                    </tr>";    
         } 
    echo "</table>"; 
 } else { 
