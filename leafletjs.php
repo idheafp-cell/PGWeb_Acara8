@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Web Map + Tabel</title>
+  <title>Web Map</title>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
@@ -12,14 +12,13 @@
       height: 100%;
       width: 100%;
       margin: 0;
-      background-color: #edf7e7;  /* hijau pastel */
-      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #edf7e7;
     }
 
     /* Judul */
     h1 {
       text-align: center;
-      margin: 20px 0;
+      margin: 20px;
       padding-bottom: 12px;
       font-size: 26px;
       color: #2f5530;
@@ -42,7 +41,6 @@
       background: white;
       padding: 20px;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
       border: 1px solid #d6e7d2;
       overflow-y: auto;
     }
@@ -54,7 +52,7 @@
       font-weight: 600;
     }
 
-    /* Tabel normal */
+    /* Tabel */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -62,7 +60,7 @@
     }
 
     th {
-      background-color: #a9d9a3; /* hijau lembut */
+      background-color: #a9d9a3;
       color: #1d321f;
       padding: 10px;
       font-weight: bold;
@@ -75,11 +73,6 @@
       background-color: white;
     }
 
-    /* Hover */
-    tr:hover td {
-      background-color: #eef8e8;
-      transition: 0.25s;
-    }
 
     /* Tombol */
     .btn {
