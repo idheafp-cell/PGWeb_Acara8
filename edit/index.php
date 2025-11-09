@@ -1,61 +1,133 @@
 <!DOCTYPE html>
-<html>
-    <body>
-        <h2>Form Edit</h2>
-        <?php
-        
-        // Sesuaikan dengan setting MySQL
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "pgweb_acara8";
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Data Kecamatan</title>
 
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+    <style>
+        body {
+            background: #e8f5e4;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 10px;
         }
 
-        $id = $_GET['id'];
-        $sql = "SELECT * FROM data_kecamatan WHERE id = $id";
-        $result = $conn->query($sql);
+        .container {
+            background: #ffffff;
+            width: 60%;
+            max-width: 300px;
+            padding: 40px;
+            border-radius: 18px;
+        }
 
-        if ($result->num_rows > 0) {
-            echo "<form action='edit.php' onsubmit='return validateForm()' method='post'>";
-            while($row = $result->fetch_assoc()) {
-                echo "<input type='hidden' name='id' value='".$row['id']."'><br>";
-                echo "<label for='kecamatan'>Kecamatan:</label><br>";
-                echo "<input type='text' id='kec' name='kecamatan' value='".$row['kecamatan']."'><br>";
-                echo "<label for='kecamatan'>Longitude:</label><br>";
-                echo "<input type='text' id='long' name='longitude' value='".$row['longitude']."'><br>";
-                echo "<label for='kecamatan'>Latitude:</label><br>";
-                echo "<input type='text' id='lat' name='latitude' value='".$row['latitude']."'><br>";
-                echo "<label for='luas'>Luas:</label><br>";
-                echo "<input type='text' id='luas' name='luas' value='".$row['luas']."'><br>";
-                echo "<label for='jumlah_penduduk'>Jumlah Penduduk:</label><br>";
-                echo "<input type='text' id='jml_pddk' name='jumlah_penduduk' value='".$row['jumlah_penduduk']."'><br><br>";
-            }
-            echo "<input type='submit' value='Submit'>";
-            echo "</form>";
-} 
+        h2 {
+            text-align: center;
+            color: #2d5f2e;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: #285728;
+            margin-bottom: 3px;
+        }
+
+        .form-control {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            display: block;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #cddfcf;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .form-control:focus {
+            border-color: #5aa85a;
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            max-width: 300px;
+            margin-top: 20px;
+            padding: 14px;
+            background: #58b45b;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: block;
+        }
+
+        .submit-btn:hover {
+            background: #4ca54e;
+        }
+    </style>
+</head>
+
+<body>
+
+<?php
+$id = $_GET['id'];
+
+$conn = new mysqli("localhost", "root", "", "pgweb_acara8");
+$sql = "SELECT * FROM data_kecamatan WHERE id = $id";
+$result = $conn->query($sql);
+$data = $result->fetch_assoc();
 ?>
 
-<p id="informasi"></p>
+<div class="container">
+    <h2>Edit Data Kecamatan</h2>
 
-<script>
-function validateForm() {
-    let luas = document.getElementById("luas").value;
-    let text="";
-    if (isNaN(luas) || luas < 1) {
-        text = "Data luas harus angka dan tidak boleh bernilai negatif";
+    <form action="edit.php" method="post">
 
-    // stop the form submission
-    event.preventDefault();
-    }
-    document.getElementById("informasi").innerHTML = text;
-    }
-</script>
+        <input type="hidden" name="id" value="<?= $data['id'] ?>">
+
+        <div class="form-group">
+            <label>Kecamatan</label>
+            <input type="text" name="kecamatan" class="form-control" value="<?= $data['kecamatan'] ?>" required>
+        </div>
+
+        <div class="form-group">
+            <label>Longitude</label>
+            <input type="text" name="longitude" class="form-control" value="<?= $data['longitude'] ?>" required>
+        </div>
+
+        <div class="form-group">
+            <label>Latitude</label>
+            <input type="text" name="latitude" class="form-control" value="<?= $data['latitude'] ?>" required>
+        </div>
+
+        <div class="form-group">
+            <label>Luas</label>
+            <input type="number" name="luas" class="form-control" value="<?= $data['luas'] ?>" required>
+        </div>
+
+        <div class="form-group">
+            <label>Jumlah Penduduk</label>
+            <input type="number" name="jumlah_penduduk" class="form-control" value="<?= $data['jumlah_penduduk'] ?>" required>
+        </div>
+
+        <button type="submit" class="submit-btn">Simpan Perubahan</button>
+    </form>
+</div>
+
 </body>
 </html>

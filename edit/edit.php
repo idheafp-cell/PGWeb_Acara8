@@ -32,4 +32,5 @@
 
     $conn->close();
 
+    header("Location: ../leafletjs.php");
     ?>

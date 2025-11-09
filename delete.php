@@ -25,5 +25,5 @@ $id = $_GET['id'];
     }
 $conn->close();
 
-//header("Location: index.php");
+header("Location: leaflet.php");
 ?>

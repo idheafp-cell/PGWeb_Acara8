@@ -33,4 +33,5 @@ if ($conn->query($sql) === TRUE) {
 // Menutup koneksi
 $conn->close(); 
 
+header("Location: ../leafletjs.php");
 ?> 
